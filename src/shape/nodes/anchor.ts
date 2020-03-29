@@ -137,7 +137,7 @@ function drawAnchor(this: ThisProps, model, group) {
     const [x, y] = [p[0], p[1]];
     let hotspot;
     const attrs = {
-      flowNode: { x: width * x, y: height * y - 4 },
+      flowNode: { x: width * x, y: height * y - 2 },
       startNode: { x: width * x - width / 2, y: height * y - height / 2 },
       endNode: { x: width * x - width / 2, y: height * y - height / 2 },
     };

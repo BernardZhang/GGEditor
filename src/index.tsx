@@ -22,6 +22,10 @@ import global from '@/common/global';
 import CommandManager from '@/common/CommandManager';
 import behaviorManager from '@/common/behaviorManager';
 
+import { handleAnchor } from '@/shape/nodes/anchor';
+import * as shapeUtils from '@/shape/utils';
+import * as constants from '@/common/constants';
+
 export {
   G6,
   Util,
@@ -43,6 +47,10 @@ export {
   global,
   CommandManager,
   behaviorManager,
+  // add export items
+  handleAnchor,
+  constants,
+  shapeUtils,
 };
 
 export default Editor;

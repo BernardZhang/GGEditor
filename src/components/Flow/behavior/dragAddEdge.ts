@@ -59,7 +59,12 @@ const dragAddEdge: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & DefaultC
   graphType: GraphType.Flow,
 
   getDefaultCfg(): DefaultConfig {
-    return { edgeType: 'bizFlowEdge', allowMultiEdge: true };
+    // const { graph } = this;
+    console.log('getDefaultCfg...');
+    return {
+      edgeType: 'bizFlowEdge',
+      allowMultiEdge: true,
+    };
   },
 
   getEvents() {
@@ -108,11 +113,13 @@ const dragAddEdge: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & DefaultC
   },
 
   onMousedown(ev) {
-    const { edgeType } = this;
+    let { edgeType } = this;
+    edgeType = this.graph.get('defaultEdge').shape || edgeType;
     if (!this.addEdgeCheck.call(this, ev, 'out')) return;
     const node = ev.item;
     const graph = this.graph;
     const linkRule = graph.get('defaultEdge').linkRule;
+    const addEdgeStyle = graph.get('defaultEdge').addEdgeStyle || {};
     this.sourceNode = node;
     graph.getNodes().forEach(n => {
       // 给其他所有节点加上 addingEdge 标识，
@@ -135,6 +142,7 @@ const dragAddEdge: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & DefaultC
         source: model.id,
         target: point,
         sourceAnchor: ev.target.get('index'),
+        style: addEdgeStyle,
       };
       this.edge = graph.addItem('edge', item);
       this.addingEdge = true;
@@ -201,6 +209,7 @@ const dragAddEdge: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & DefaultC
       graph.updateItem(this.edge, {
         targetAnchor: ev.target.get('index'),
         target: model.id,
+        style: this.graph.get('defaultEdge').style,
       });
       graph.emit(GraphCustomEvent.onAfterConnect, {
         edge: this.edge,
