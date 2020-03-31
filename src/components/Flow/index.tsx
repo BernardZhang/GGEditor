@@ -84,6 +84,11 @@ class Flow extends React.Component<FlowProps, FlowState> {
         },
         'recall-edge': 'recall-edge',
         'brush-select': 'brush-select',
+        'click-item': {
+          type: 'click-item',
+          multiple: true,
+          keyCode: 16, // shift
+        },
       },
     });
 
@@ -92,6 +97,7 @@ class Flow extends React.Component<FlowProps, FlowState> {
 
       modes[mode] = Object.values(customModes ? customModes(mode, behaviors) : behaviors);
     });
+    // console.log('modes...', modes);
 
     this.graph = new G6.Graph({
       container: containerId,

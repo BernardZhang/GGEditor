@@ -11,25 +11,28 @@ class Index extends React.Component {
         <Flow
           className={styles.editorBd}
           data={data}
-          graphConfig={{
-            defaultEdge: {
-              shape: 'cubic-vertical',
-              style: {
-                startArrow: false,
-                endArrow: {
-                  path: [['M', 3, 0], ['L', -3, -3], ['L', -3, 3], ['Z']],
-                  d: 3,
-                },
-                lineDash: false,
-                stroke: '#333',
-              },
-              addEdgeStyle: {
-                startArrow: false,
-                lineDash: [5, 5],
-                stroke: 'blue',
-              },
-            },
-          }}
+          graphConfig={
+            {
+              // renderer: 'svg'
+              // defaultEdge: {
+              //   shape: 'cubic-vertical',
+              //   style: {
+              //     startArrow: false,
+              //     endArrow: {
+              //       path: [['M', 3, 0], ['L', -3, -3], ['L', -3, 3], ['Z']],
+              //       d: 3,
+              //     },
+              //     lineDash: false,
+              //     stroke: '#333',
+              //   },
+              //   addEdgeStyle: {
+              //     startArrow: false,
+              //     lineDash: [5, 5],
+              //     stroke: 'blue',
+              //   },
+              // },
+            }
+          }
         />
         <EditableLabel />
       </GGEditor>
