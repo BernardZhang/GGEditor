@@ -79,6 +79,8 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
   },
 
   execute(graph) {
+    const canRemove = graph.get('canRemove');
+
     if (isMind(graph)) {
       const { model } = this.params.mind;
 
@@ -91,8 +93,15 @@ const removeCommand: BaseCommand<RemoveCommandParams> = {
       const { nodes, edges } = this.params.flow;
 
       executeBatch(graph, () => {
-        [...Object.keys(nodes), ...Object.keys(edges)].forEach(id => {
-          graph.removeItem(id);
+        Object.keys(nodes).forEach(id => {
+          if (!canRemove || canRemove(nodes[id])) {
+            graph.removeItem(id);
+          }
+        });
+        Object.keys(edges).forEach(id => {
+          if (!canRemove || canRemove(edges[id])) {
+            graph.removeItem(id);
+          }
         });
       });
     }

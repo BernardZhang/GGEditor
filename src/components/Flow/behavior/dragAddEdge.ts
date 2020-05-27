@@ -78,7 +78,8 @@ const dragAddEdge: DragAddEdgeBehavior & ThisType<DragAddEdgeBehavior & DefaultC
   isAnchor(ev) {
     const { target } = ev;
     const targetName = target.get('className');
-    if (targetName == 'anchor') return true;
+    // if (targetName == 'anchor') return true;
+    if (['anchor', 'anchorSpot'].includes(targetName)) return true;
     else return false;
   },
 
